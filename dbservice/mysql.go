@@ -26,7 +26,7 @@ func NewMySqlDB(user string, password string, host string, port uint16, dbName s
 var _ DbConn = &mysqldb{}
 
 // Connect Implement
-func (mdb mysqldb) Connect() {
+func (mdb *mysqldb) Connect() {
 	fmt.Printf("Connecting to mysql://%v:%v@%v:%v/%v \n",
 		mdb.user,
 		mdb.password,
@@ -36,10 +36,10 @@ func (mdb mysqldb) Connect() {
 	)
 }
 
-func (mdb mysqldb) Close() {
+func (mdb *mysqldb) Close() {
 	fmt.Printf("Disconnecting mysql")
 }
 
-func (mdb mysqldb) CreateTable(name string) {
+func (mdb *mysqldb) CreateTable(name string) {
 	fmt.Printf("Creating table %v in database %v \n", name, mdb.dbName)
 }
